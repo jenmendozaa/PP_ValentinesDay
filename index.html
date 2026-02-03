@@ -1,1 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💘 Question</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="card" id="card">
+    <h1>Will you be my Valentine? 💖</h1>
+    <p>I have something cute for you. Choose wisely 😌</p>
+
+    <div class="btn-row">
+      <a class="button primary" id="yesLink" href="valentine.html">Yes 💞</a>
+      <button class="secondary" id="noBtn">No 🙃</button>
+    </div>
+
+    <div class="note">
+      <p style="margin:0;">Try pressing “No” if you can 😉</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    setupRunawayNoButton();
+
+    const yesLink = document.getElementById("yesLink");
+    if (isTestMode()) {
+      yesLink.href = withTestParam("valentine.html");
+    }
+  </script>
+</body>
+</html>
 

@@ -1,1 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💝 Countdown</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="card">
+    <h1>Yay!! 💗</h1>
+    <p>Your gift unlocks on Valentine’s Day.</p>
+
+    <div id="countdownWrap">
+      <div class="countdown" id="countdown"></div>
+      <p>Come back on Feb 14 💘</p>
+    </div>
+
+    <div id="unlockWrap" class="hidden">
+      <p>It’s Valentine’s Day!! 🎉</p>
+      <a class="button primary" id="giftLink" href="game.html">Open your gift 💝</a>
+    </div>
+
+    <div class="btn-row">
+      <a class="button secondary small" href="index.html">Back</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    const countdownEl = document.getElementById("countdown");
+    const countdownWrap = document.getElementById("countdownWrap");
+    const unlockWrap = document.getElementById("unlockWrap");
+    const giftLink = document.getElementById("giftLink");
+
+    function tick() {
+      const unlocked = isValentinesDayToday() || isTestMode();
+
+      if (unlocked) {
+        countdownWrap.classList.add("hidden");
+        unlockWrap.classList.remove("hidden");
+
+        if (isTestMode()) {
+          giftLink.href = withTestParam("game.html");
+        }
+        return;
+      }
+
+      const target = getValentinesTarget();
+      const now = new Date();
+      countdownEl.textContent = formatCountdown(target - now);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
 

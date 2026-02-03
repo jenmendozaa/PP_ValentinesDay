@@ -1,1 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>💝 Catch the Hearts</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    canvas {
+      width: min(560px, 92vw);
+      border-radius: 16px;
+      background: white;
+      touch-action: none;
+    }
+    .hud {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      background: #fff0f4;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .debug {
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Catch the Hearts 💘</h1>
+    <p>Catch <b>14</b> hearts to win!</p>
+
+    <canvas id="game" width="560" height="420"></canvas>
+
+    <div class="hud">
+      <div class="pill">Caught: <span id="caught">0</span> / 14</div>
+      <div class="pill">Missed: <span id="missed">0</span></div>
+      <button class="secondary small" id="restartBtn">Restart</button>
+    </div>
+
+    <div class="note hidden" id="winNote">
+      <h2>You did it!! 💖</h2>
+      <p>Happy Valentine’s Day 💝</p>
+      <a class="button primary" id="backLink" href="index.html">Back to start</a>
+    </div>
+
+    <div class="note hidden" id="debugBox">
+      <div class="debug" id="debugText"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
 
