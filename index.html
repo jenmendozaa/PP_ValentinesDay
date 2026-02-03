@@ -8,8 +8,13 @@
 </head>
 <body>
   <div class="card" id="card">
-    <h1>Will you be my Valentine? 💖</h1>
-    <p>I have something cute for you. Choose wisely 😌</p>
+    <h1>Be my Valentine PP? 💖</h1>
+    <p>Remember I control your access to Stacy. So choose wisely 😌</p>
+
+    <!-- ✅ Picture -->
+    <div class="photo">
+      <img src="assets/question.jpg" alt="Us 💖" />
+    </div>
 
     <div class="btn-row">
       <a class="button primary" id="yesLink" href="valentine.html">Yes 💞</a>
@@ -18,18 +23,34 @@
 
     <div class="note">
       <p style="margin:0;">Try pressing “No” if you can 😉</p>
+      <p style="margin:8px 0 0; opacity:.75; font-size:.95rem;">
+      </p>
     </div>
   </div>
 
   <script src="script.js"></script>
   <script>
+    const bgm = makeAudio("assets/bgm.mp3", { loop: true });
+    const clickSfx = makeAudio("assets/click.mp3");
+
     setupRunawayNoButton();
 
     const yesLink = document.getElementById("yesLink");
-    if (isTestMode()) {
-      yesLink.href = withTestParam("valentine.html");
-    }
+    if (isTestMode()) yesLink.href = withTestParam("valentine.html");
+
+    // Start music only after click/tap (browser rule)
+    yesLink.addEventListener("click", () => {
+      playSfx(clickSfx);
+      startBgm(bgm);
+    });
+
+    // Optional: click sfx on "No" interactions
+    const noBtn = document.getElementById("noBtn");
+    noBtn.addEventListener("mouseenter", () => playSfx(clickSfx));
+    noBtn.addEventListener("touchstart", () => playSfx(clickSfx), { passive: true });
+
+    // Also allow starting BGM on any first tap on the page (helps mobile)
+    window.addEventListener("pointerdown", () => startBgm(bgm), { once: true });
   </script>
 </body>
 </html>
-

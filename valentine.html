@@ -9,29 +9,44 @@
 <body>
   <div class="card">
     <h1>Yay!! 💗</h1>
-    <p>Your gift unlocks on Valentine’s Day.</p>
+    <p>You get your shit on V-Day.</p>
+
+    <!-- ✅ Picture -->
+    <div class="photo">
+      <img src="assets/countdown.jpg" alt="Valentine vibe 💝" />
+    </div>
 
     <div id="countdownWrap">
       <div class="countdown" id="countdown"></div>
-      <p>Come back on Feb 14 💘</p>
+      <p style="margin-top:10px;">Come back later my dick 💘</p>
     </div>
 
     <div id="unlockWrap" class="hidden">
       <p>It’s Valentine’s Day!! 🎉</p>
-      <a class="button primary" id="giftLink" href="game.html">Open your gift 💝</a>
+      <a class="button primary" id="giftLink" href="game.html">Open it if you dare 💝</a>
     </div>
 
-    <div class="btn-row">
-      <a class="button secondary small" href="index.html">Back</a>
+    <div class="btn-row" style="margin-top:18px;">
+      <a class="button secondary small" id="backLink" href="index.html">Back</a>
     </div>
   </div>
 
   <script src="script.js"></script>
   <script>
+    const bgm = makeAudio("assets/bgm.mp3", { loop: true });
+    const clickSfx = makeAudio("assets/click.mp3");
+
     const countdownEl = document.getElementById("countdown");
     const countdownWrap = document.getElementById("countdownWrap");
     const unlockWrap = document.getElementById("unlockWrap");
     const giftLink = document.getElementById("giftLink");
+    const backLink = document.getElementById("backLink");
+
+    // Preserve test mode through navigation
+    if (isTestMode()) {
+      giftLink.href = withTestParam("game.html");
+      backLink.href = withTestParam("index.html");
+    }
 
     function tick() {
       const unlocked = isValentinesDayToday() || isTestMode();
@@ -39,21 +54,21 @@
       if (unlocked) {
         countdownWrap.classList.add("hidden");
         unlockWrap.classList.remove("hidden");
-
-        if (isTestMode()) {
-          giftLink.href = withTestParam("game.html");
-        }
         return;
       }
 
       const target = getValentinesTarget();
-      const now = new Date();
-      countdownEl.textContent = formatCountdown(target - now);
+      countdownEl.textContent = formatCountdown(target - new Date());
     }
 
     tick();
     setInterval(tick, 1000);
+
+    giftLink.addEventListener("click", () => playSfx(clickSfx));
+    backLink.addEventListener("click", () => playSfx(clickSfx));
+
+    // Start music on first tap/click (required on many phones)
+    window.addEventListener("pointerdown", () => startBgm(bgm), { once: true });
   </script>
 </body>
 </html>
-

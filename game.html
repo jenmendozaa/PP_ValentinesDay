@@ -5,37 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>💝 Catch the Hearts</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    canvas {
-      width: min(560px, 92vw);
-      border-radius: 16px;
-      background: white;
-      touch-action: none;
-    }
-    .hud {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
-    .pill {
-      background: #fff0f4;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-weight: 600;
-    }
-    .debug {
-      font-family: monospace;
-      font-size: 12px;
-      white-space: pre-line;
-    }
-  </style>
 </head>
 <body>
   <div class="card">
     <h1>Catch the Hearts 💘</h1>
-    <p>Catch <b>14</b> hearts to win!</p>
+    <p>Catch <b>14</b> hearts to win your surprise!</p>
 
     <canvas id="game" width="560" height="420"></canvas>
 
@@ -45,14 +19,46 @@
       <button class="secondary small" id="restartBtn">Restart</button>
     </div>
 
-    <div class="note hidden" id="winNote">
-      <h2>You did it!! 💖</h2>
-      <p>Happy Valentine’s Day 💝</p>
-      <a class="button primary" id="backLink" href="index.html">Back to start</a>
+    <div class="controls">
+      <button class="secondary small" id="musicBtn">Music: On</button>
+      <button class="secondary small" id="muteBtn">Mute: Off</button>
+      <label class="pill range-pill">
+        Volume
+        <input type="range" id="vol" min="0" max="1" step="0.01" />
+      </label>
+    </div>
+
+    <div class="btn-row" style="margin-top:18px;">
+      <a class="button secondary small" id="backLink" href="valentine.html">Back</a>
     </div>
 
     <div class="note hidden" id="debugBox">
-      <div class="debug" id="debugText"></div>
+      <pre class="debug" id="debugText"></pre>
+    </div>
+  </div>
+
+  <!-- ✅ WIN OVERLAY (no Redeem button) -->
+  <div class="overlay" id="winOverlay" aria-hidden="true">
+    <div class="overlay-card">
+      <h2 class="big-title">You did it!! 💖</h2>
+      <p class="sub">Happy Valentine’s Day 💝<br/>You unlocked your date night coupon.</p>
+
+      <!-- EDIT THIS COUPON TEXT -->
+      <div class="coupon">
+        <h3>🎟️ Date Night Coupon</h3>
+        <div class="big">Redeem for: For me not shaking off my subspace at all tonight + 1 time me talking about my feelings without blackmail</div>
+        <p><b>Valid for:</b> The most gargantuan and throbing penis out there</p>
+        <p><b>Expires:</b> When my brat wins out</p>
+        <p><b>Promise:</b> That I will give it a good ole college try to keep this promise💕</p>
+      </div>
+
+      <div class="btn-row" style="margin-top:14px;">
+        <button class="button primary" id="closeWinBtn">Back</button>
+      </div>
+
+      <p style="margin:12px 0 0; opacity:.8; font-size:.95rem;">
+        (Tip: take a screenshot since I'll try to lie and that I never made these promises )
+      </p>
     </div>
   </div>
 
@@ -60,4 +66,3 @@
   <script src="game.js"></script>
 </body>
 </html>
-
